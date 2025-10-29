@@ -62,7 +62,7 @@ MiInventarioExpress/
 5. Abre tu navegador en http://localhost:3000
 
 
-Estructura del Proyecto (Paso 3)
+## Estructura del Proyecto (Paso 3)
 El proyecto sigue el patrón MVC (Modelo-Vista-Controlador) para mantener una arquitectura organizada y escalable:
 ├── models/         # Esquemas de Mongoose
 ├── routes/         # Rutas de Express
@@ -72,7 +72,7 @@ El proyecto sigue el patrón MVC (Modelo-Vista-Controlador) para mantener una ar
 ├── uploads/        # Imágenes subidas por los usuarios
 ├── index.js        # Archivo principal del servidor
 
-CRUD de Productos (Paso 4)
+## CRUD de Productos (Paso 4)
 Se implementó un sistema completo de CRUD para productos:
 1.Crear: Formulario para añadir nuevos productos
 2.Listar: Vista principal con todos los productos registrados
@@ -81,7 +81,7 @@ Se implementó un sistema completo de CRUD para productos:
 
 La lógica se gestiona con Express y los datos se almacenan en MongoDB.
 
-Esquema de Producto (Paso 5)
+## Esquema de Producto (Paso 5)
 El modelo Producto fue creado con Mongoose, incluyendo los siguientes campos:
 -nombre: { type: String, required: true },
 -precio: { type: Number, required: true },
@@ -90,7 +90,7 @@ El modelo Producto fue creado con Mongoose, incluyendo los siguientes campos:
 
 Este esquema permite almacenar información básica y una imagen por producto.
 
-Carga de Imágenes con Multer (Paso 6)
+## Carga de Imágenes con Multer (Paso 6)
 Se integró Multer para permitir la carga de imágenes al crear o actualizar productos. La configuración incluye:
 
 -Carpeta de destino: /uploads
@@ -98,7 +98,7 @@ Se integró Multer para permitir la carga de imágenes al crear o actualizar pro
 -Validación de tamaño: límite de 2MB
 -Las imágenes se almacenan localmente y se muestran en la vista de productos.
 
-Autenticación de Usuarios (Paso 7)
+## Autenticación de Usuarios (Paso 7)
 Se implementó un sistema básico de autenticación:
 -Registro: Crea un nuevo usuario con nombre, email y contraseña
 -Login: Verifica credenciales y crea sesión
@@ -111,5 +111,5 @@ Tecnologías utilizadas:
 -Middleware personalizado: protege rutas privadas como /productos
 
 
-Enlace al repositorio:
+## Enlace al repositorio:
 https://github.com/alexander06j/MiInventarioExpress.git
