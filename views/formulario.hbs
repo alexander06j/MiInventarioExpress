@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="/css/estilos.css">
+
+<h1>{{#if producto}}Editar{{else}}Crear{{/if}} Producto</h1>
+{{#if error}}
+  <div style="background-color:#f8d7da; color:#721c24; padding:10px; border-radius:5px; margin-bottom:15px;">
+    ⚠️ {{error}}
+  </div>
+{{/if}}
+
+<form action="{{#if producto}}/productos/actualizar/{{producto._id}}{{else}}/productos{{/if}}" method="POST" enctype="multipart/form-data">
+  <label>Nombre:</label>
+  <input type="text" name="nombre" value="{{producto.nombre}}" required>
+
+  <label>Precio:</label>
+  <input type="number" name="precio" value="{{producto.precio}}" required>
+
+  <label>Descripción:</label>
+  <textarea name="descripcion" required>{{producto.descripcion}}</textarea>
+
+  <label>Imagen:</label>
+  <input type="file" name="imagen">
+
+  {{#if producto.imagen}}
+    <p>Imagen actual:</p>
+    <img src="/uploads/{{producto.imagen}}" width="100">
+    <input type="hidden" name="imagenActual" value="{{producto.imagen}}">
+  {{/if}}
+
+  <button type="submit">Guardar</button>
+</form>
+
+<a href="/productos">Volver</a>

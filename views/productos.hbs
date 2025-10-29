@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="/css/estilos.css">
+
+{{#if usuarioId}}
+  <p>Sesión activa | <a href="/logout">Cerrar sesión</a></p>
+{{/if}}
+
+<h1>Lista de Productos</h1>
+
+<a href="/productos/nuevo">Crear nuevo producto</a>
+
+<ul>
+  {{#each productos}}
+    <li>
+      <strong>{{nombre}}</strong> - ${{precio}}<br>
+      {{#if imagen}}
+        <img src="/uploads/{{imagen}}" width="150" style="margin-top:10px;"><br>
+      {{/if}}
+      <p><em>{{descripcion}}</em></p>
+      <a href="/productos/editar/{{_id}}">Editar</a> |
+      <a href="/productos/eliminar/{{_id}}">Eliminar</a>
+    </li>
+  {{/each}}
+</ul>
+
+
+
