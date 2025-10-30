@@ -20,6 +20,22 @@
       <a href="/productos/eliminar/{{_id}}">Eliminar</a>
     </li>
   {{/each}}
+
+  {{#if usuarioId}}
+  <a href="/chat" style="
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  ">💬 Chat</a>
+{{/if}}
+
+
 </ul>
 
 

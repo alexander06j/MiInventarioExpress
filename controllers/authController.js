@@ -1,3 +1,4 @@
+//controllers/authController.js
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 
@@ -29,7 +30,15 @@ exports.iniciarSesion = async (req, res) => {
   if (!valido) return res.render('login', { error: 'Contraseña incorrecta' });
 
   req.session.usuarioId = usuario._id;
-  res.redirect('/productos');
+  req.session.usuarioNombre = usuario.nombre;
+
+  req.session.save((err) => {
+    if (err) {
+      console.error('Error al guardar la sesión:', err);
+      return res.render('login', { error: 'Error al iniciar sesión' });
+    }
+    res.redirect('/productos');
+  });
 };
 
 exports.cerrarSesion = (req, res) => {
@@ -37,3 +46,5 @@ exports.cerrarSesion = (req, res) => {
     res.redirect('/login');
   });
 };
+
+

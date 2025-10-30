@@ -1,0 +1,48 @@
+<h1>Chat en tiempo real</h1>
+{{#if usuarioId}}
+  <p>Bienvenido, {{usuarioNombre}}</p>
+  <a href="/productos" style="
+    display: inline-block;
+    margin-bottom: 20px;
+    background-color: #28a745;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+  ">← Volver a productos</a>
+{{/if}}
+
+{{#if usuarioId}}
+  <p style="font-weight: bold;">Bienvenido {{usuarioNombre}}</p>
+{{/if}}
+
+<ul id="mensajes"></ul>
+
+<form id="formulario">
+  <input id="mensaje" autocomplete="off" placeholder="Escribe tu mensaje..." />
+  <button>Enviar</button>
+</form>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  const socket = io();
+
+  const formulario = document.getElementById('formulario');
+  const input = document.getElementById('mensaje');
+  const lista = document.getElementById('mensajes');
+
+  formulario.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (input.value) {
+      socket.emit('chat message', input.value);
+      input.value = '';
+    }
+  });
+
+  socket.on('chat message', (data) => {
+    const item = document.createElement('li');
+    item.textContent = `${data.usuarioNombre}: ${data.msg}`;
+    lista.appendChild(item);
+  });
+
+</script>

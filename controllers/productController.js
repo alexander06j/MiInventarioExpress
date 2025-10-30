@@ -12,10 +12,10 @@ exports.mostrarFormulario = (req, res) => {
 
 exports.crearProducto = async (req, res) => {
   try {
-    const { nombre, precio, descripcion } = req.body;
+    const { nombreProducto, precio, descripcion } = req.body;
     const imagen = req.file ? req.file.filename : null;
 
-    await Product.create({ nombre, precio, descripcion, imagen });
+    await Product.create({ nombreProducto, precio, descripcion, imagen });
     res.redirect('/productos');
   } catch (error) {
     res.render('formulario', {
@@ -33,21 +33,20 @@ exports.editarProducto = async (req, res) => {
 exports.mostrarEdicion = async (req, res) => {
   const { id } = req.params;
   try {
-    const producto = await Producto.findById(id);
-    if (!producto) {
-      return res.redirect('/productos');
-    }
-    res.render('editarProducto', { producto });
+    const producto = await Product.findById(id);
+    console.log('Producto encontrado:', producto); // ← ¿esto se muestra?
+    if (!producto) return res.redirect('/productos');
+    res.render('formulario', { producto });
   } catch (error) {
+    console.error('Error al buscar producto:', error);
     res.redirect('/productos');
   }
 };
 
-
 exports.actualizarProducto = async (req, res) => {
-  const { nombre, precio, descripcion } = req.body;
+  const { nombreProducto, precio, descripcion } = req.body;
   const imagen = req.file ? req.file.filename : req.body.imagenActual;
-  await Product.findByIdAndUpdate(req.params.id, { nombre, precio, descripcion, imagen });
+  await Product.findByIdAndUpdate(req.params.id, { nombreProducto, precio, descripcion, imagen });
   res.redirect('/productos');
 };
 
@@ -55,3 +54,5 @@ exports.eliminarProducto = async (req, res) => {
   await Product.findByIdAndDelete(req.params.id);
   res.redirect('/productos');
 };
+
+
