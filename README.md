@@ -110,6 +110,69 @@ Tecnologías utilizadas:
 -express-session: para manejar sesiones de usuario
 -Middleware personalizado: protege rutas privadas como /productos
 
+## Paso 8: Validaciones con express-validator y control de errores
+Se implementaron validaciones en los formularios de registro y creación/edición de productos utilizando express-validator. Esto garantiza que los datos enviados por el usuario cumplan con los requisitos mínimos antes de ser procesados.
+
+Validaciones aplicadas:
+
+* Campos obligatorios (nombre, email, contraseña, nombreProducto, precio)
+Formato de email válido
+Contraseña con longitud mínima
+Precio numérico y positivo
+
+* En caso de errores:
+Se muestran mensajes claros en la vista correspondiente
+Los datos ingresados se conservan para facilitar la corrección
+
+## Paso 9: Diseño de vistas con Handlebars
+Se utilizaron plantillas Handlebars (.hbs) para construir una interfaz clara y funcional:
+productos.hbs: lista todos los productos con opciones para editar y eliminar
+formulario.hbs: formulario reutilizable para crear y editar productos
+login.hbs y registro.hbs: formularios de autenticación con control de errores
+chat.hbs: interfaz de chat en tiempo real con bienvenida personalizada y botón de retorno
+Las vistas incluyen estilos CSS personalizados y condicionales para mostrar contenido según el estado de sesión del usuario.
+
+## Paso 10: Módulo de chat en tiempo real con Socket.io
+Se integró Socket.io para permitir comunicación en tiempo real entre usuarios autenticados:
+Al iniciar sesión, el nombre del usuario se guarda en la sesión
+En la vista de chat, los usuarios pueden enviar mensajes que se transmiten instantáneamente a todos los conectados
+Cada mensaje incluye el nombre del remitente
+Se validó que solo usuarios autenticados puedan acceder al chat
+La conexión se gestiona desde el servidor (index.js) y se refleja dinámicamente en el cliente (chat.hbs).
+
+## Paso 11: Pruebas manuales con Postman, navegador y consola
+Se realizaron pruebas exhaustivas para validar cada funcionalidad:
+
+🔹 Postman
+Registro de usuario (POST /registro)
+Inicio de sesión (POST /login)
+Creación de producto (POST /productos)
+Edición y eliminación (PUT /productos/:id, DELETE /productos/:id)
+
+🔹 Navegador
+Flujo completo de usuario: registro → login → productos → chat
+Verificación visual de vistas, enlaces y formularios
+Prueba de chat en tiempo real entre múltiples pestañas
+
+🔹 Consola
+Logs de conexión de usuarios y mensajes en tiempo real
+Verificación de errores de sesión, WebSocket y MongoDB
+Confirmación de datos emitidos y recibidos por Socket.io
+
+## Paso 12: Validación final y checklist
+Antes de finalizar el desarrollo, se realizó una validación integral:
+
+[x] Todas las rutas funcionan correctamente
+
+[x] Las vistas se renderizan con datos dinámicos
+
+[x] Las sesiones se gestionan correctamente
+
+[x] El chat transmite mensajes en tiempo real
+
+[x] No hay errores en consola ni en el navegador
+
+[x] MongoDB almacena los datos esperados
 
 ## Enlace al repositorio:
 https://github.com/alexander06j/MiInventarioExpress.git
